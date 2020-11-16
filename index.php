@@ -16,17 +16,12 @@
 
         if($result->num_rows== 0){
             echo "No result";
-        }elseif($result->num_rows == 1){
-            $row = $result->fetch_assoc();
-            echo $row ["title"]. " ". $row ["image"]. " ". $row ["author_first_name"]. " ". $row ["author_last_name"]. " ". $row ["ISBN_code"]. " ". $row ["short_description"]. " ". $row ["publisher_date"]. " ". $row ["publisher_name"]. " ". $row ["publisher_address"]. " ". $row ["publisher_size"]. " ". $row ["type"]. " ". $row ["status"]
-            . "<br>";
-
         }else {
             $rows = $result->fetch_all(MYSQLI_ASSOC);
             foreach ($rows as $key => $value){
 
                 echo $value ["title"]. " ". $value ["image"]. " ". $value["author_first_name"]. " ". $value ["author_last_name"]. " ". $value ["ISBN_code"]. " ". $value ["short_description"]. " ". $value ["publish_date"]. " ". $value ["publisher_name"]. " ". $value ["publisher_address"]. " ". $value ["publisher_size"]. " ". $value ["type"]. " ". $value ["status"]
-                . "<br>";
+                . "<br> <a href='update.php?id=".$value['id']."'><button type='button' class='btn btn-primary'>Details</button></a> <a href='delete.php?id=".$value['id']."'><button type='button' class='btn btn-primary'>Delete</button></a>";
             } 
         }
 

@@ -1,5 +1,12 @@
 <?php
     require_once 'actions/db_connect.php';
+    if ($_GET['id']) {
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM media WHERE id={$id}";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        $conn->close();
+        
     
 ?>
 
@@ -11,8 +18,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="actions/a_form.php" method="post">
-        <input type="text" name="title" placeholder="title"><br>
+    <form action="actions/a_form_update.php" method="post">
+        <input type="text" name="title" placeholder="title"value="<?php echo $data['title']?>"><br>
         <input type="text" name="image" placeholder="image"><br>
         <input type="text" name="author_first_name" placeholder="Author-FirstName"><br>
         <input type="text" name="author_last_name" placeholder="Author-LastName"><br>
@@ -25,6 +32,7 @@
         <input type="text" name="type" placeholder="type"><br>
         <input type="text" name="status" placeholder="status"><br>
         <input type="submit" name="submit" placeholder="title"><br>
+        <input type="" name="id" value="<?php echo $data['id'] ?>">
     
     
     
@@ -32,3 +40,6 @@
     
 </body>
 </html>
+<?php 
+ }
+?>

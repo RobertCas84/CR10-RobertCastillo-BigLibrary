@@ -1,7 +1,8 @@
 <?php
     require_once 'db_connect.php';
 
-    if($_POST){
+    if($_POST["id"]){
+        $id=$_POST["id"];
         $title= $_POST["title"];
         $image= $_POST["image"];
         $author_first_name= $_POST["author_first_name"];
@@ -15,14 +16,13 @@
         $type= $_POST["type"];
         $status= $_POST["status"];
         
-        $sql = "INSERT INTO media(title, image, author_first_name, author_last_name, ISBN_code, short_description, publish_date, publisher_name, publisher_address, publisher_size, type, status) 
-        VALUES ('$title','$image','$author_first_name','$author_last_name','$ISBN_code','$short_description','$publish_date','$publisher_name','$publisher_address','$publisher_size','$type','$status')";
+        $sql = "DELETE FROM media WHERE id={$id}";
+
         var_dump($sql);
 
         if($conn->query($sql)){
-            echo "success";
+           
         }
     }
 
 
-?>
